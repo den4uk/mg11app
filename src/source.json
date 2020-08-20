@@ -1,0 +1,37 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "question": "When",
+            "snippet": "I was on duty on {{when}}",
+            "values": [{"type": "date", "slug": "when"}]
+        },
+        {
+            "id": 2,
+            "question": "With whom",
+            "snippet": ", crewed with {{crew}}",
+            "values": [{"type": "text", "slug": "crew"}]
+        },
+        {
+            "id": 3,
+            "question": "Callsign",
+            "snippet": ", using callsign {{callsign}}. ",
+            "values": [{"type": "text", "slug": "callsign"}]
+        },
+        {
+            "id": 4,
+            "question": "Weather (traffic only)",
+            "snippet": "It was a {{weather_adj}} day, visibility was {{weather_vis}}. ",
+            "values": [
+                {"type": "text", "slug": "weather_adj"}, 
+                {"type": "text", "slug": "weather_vis"}
+            ]
+        },
+        {
+            "id": 5,
+            "question": "Vehicle VRM",
+            "snippet": "On the day of the duty I driving a marked vehicle, registration {{vrm}}. ",
+            "values": [{"type": "text", "slug": "vrm"}]
+        }
+    ]
+}

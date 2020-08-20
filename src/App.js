@@ -1,26 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ShowText from './components/ShowText'
+import EntryText from './components/EntryText'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container box'>
+      <h1 className='h1 title'>Fast MG11</h1>
+      <div className='columns'>
+        <div className='column'>
+          <EntryText />
+        </div>
+        <div className='column'>
+          <ShowText />
+        </div>
+      </div>
     </div>
-  );
+  )
 }
-
-export default App;
