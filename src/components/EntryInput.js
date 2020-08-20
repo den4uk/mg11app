@@ -17,7 +17,7 @@ function EntryInput(input_item) {
     function getDateString(offset=0) {
         let d = new Date()
         d.setDate(d.getDate() - offset)
-        return `${d.getFullYear()}-${String(d.getMonth()).padStart(2, 0)}-${String(d.getDate()).padStart(2, 0)}`
+        return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2, 0)}-${String(d.getDate()).padStart(2, 0)}`
     }
 
     function setUpdateInputValue(id, value) {
