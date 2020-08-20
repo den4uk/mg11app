@@ -21,7 +21,7 @@
         {
             "id": 4,
             "question": "Weather (traffic only)",
-            "snippet": "It was a {{weather_adj}} day, visibility was {{weather_vis}}. ",
+            "snippet": " It was a {{weather_adj}} day, visibility was {{weather_vis}}. ",
             "values": [
                 {"type": "text", "slug": "weather_adj"}, 
                 {"type": "text", "slug": "weather_vis"}
@@ -29,9 +29,12 @@
         },
         {
             "id": 5,
-            "question": "Vehicle VRM",
-            "snippet": "On the day of the duty I driving a marked vehicle, registration {{vrm}}. ",
-            "values": [{"type": "text", "slug": "vrm"}]
+            "question": "Patrol vehicle",
+            "snippet": " On the day of the duty I was driving {{vehicle_marking}} vehicle, registration {{vehicle_vrm}}. ",
+            "values": [
+                {"type": "radio", "slug": "vehicle_marking", "options": ["a marked", "an unmarked"]},
+                {"type": "text", "slug": "vehicle_vrm"}
+            ]
         }
     ]
 }

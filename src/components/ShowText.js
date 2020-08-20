@@ -28,7 +28,7 @@ function ShowText() {
     }
 
     return (
-        <div>
+        <div className="tile is-child">
             <p id="copyTextId">{source.map((src, index) => 
                 <ShowItem 
                     key={index} 
@@ -36,21 +36,23 @@ function ShowText() {
                     answers={answers} 
                 />
             )}</p>
-            <hr/>
-            <p style={{display: !hasValues(answers) && 'none'}}>
-              <button
-                form='entry-form-id'   
-                type="reset" 
-                onClick={() => dispatch(clearAllInputs())}
-                className='button is-small is-white'>
-                Clear
-              </button>
-              <button 
-                className={btnState ? 'button is-small is-light is-success' : 'button is-small is-light'}
-                onClick={copyText}>
-                  {btnState ? 'Copied' : 'Copy'}
-              </button>
-            </p>
+            <div style={{display: !hasValues(answers) && 'none'}}>
+                <hr/>
+                <p>
+                <button
+                    form='entry-form-id'   
+                    type="reset" 
+                    onClick={() => dispatch(clearAllInputs())}
+                    className='button is-small is-white'>
+                    Clear
+                </button>
+                <button 
+                    className={btnState ? 'button is-small is-light is-success' : 'button is-small is-light'}
+                    onClick={copyText}>
+                    {btnState ? 'Copied' : 'Copy'}
+                </button>
+                </p>
+            </div>
         </div>
     )
 }
