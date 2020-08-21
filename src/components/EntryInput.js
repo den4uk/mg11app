@@ -1,9 +1,11 @@
 import React from 'react'
-import { connect, useDispatch } from 'react-redux'
+import dateFormat from 'date-format'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import { updateInput } from '../actions'
 
 function EntryInput(input_item) {
     const {val} = input_item
+    const meta = useSelector(state => state.meta)
     const dispatch = useDispatch()
 
     function handleChange(e) {
@@ -13,37 +15,43 @@ function EntryInput(input_item) {
     function handleUpdate(value) {
         dispatch(updateInput(val.slug, value))
     }
+
+    function handleChangeDate(value) {
+        const d = new Date(value)
+        const dateObj = new Intl.DateTimeFormat(meta.options.date.locale, meta.options.date.options).format(d)
+        return handleUpdate(dateObj)
+    }
     
     function getDateString(offset=0) {
-        let d = new Date()
+        const d = new Date()
         d.setDate(d.getDate() - offset)
-        return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2, 0)}-${String(d.getDate()).padStart(2, 0)}`
+        return dateFormat.asString('yyyy-MM-dd', d)
     }
 
-    function setUpdateInputValue(id, value) {
+    function setDateUpdateInputValue(id, value) {
         document.getElementById(id).value = value
-        handleUpdate(value)
+        handleChangeDate(value)
     }
 
     function inputSelector(val) {
         switch (val.type) {
             case "date":
-                let date_id = `${val.slug}_id`
+                const date_id = `${val.slug}_id`
                 return (
                     <div className="field has-addons">
                         <div className="control">
                             <input 
                                 className="input is-small"
-                                type="date"
+                                type={val.type}
                                 id={date_id}
-                                onChange={handleChange}
+                                onChange={(e) => handleChangeDate(e.target.value)}
                                 placeholder={val.slug}>
                             </input>
                         </div>
                         <div className="control">
                             <button 
                                 className="button is-small" 
-                                onClick={() => setUpdateInputValue(date_id, getDateString())}
+                                onClick={() => setDateUpdateInputValue(date_id, getDateString())}
                                 type="button">
                                 Today
                             </button>
@@ -51,7 +59,7 @@ function EntryInput(input_item) {
                         <div className="control">
                             <button 
                                 className="button is-small" 
-                                onClick={() => setUpdateInputValue(date_id, getDateString(1))}
+                                onClick={() => setDateUpdateInputValue(date_id, getDateString(1))}
                                 type="button">
                                 Yesterday
                             </button>
@@ -65,15 +73,24 @@ function EntryInput(input_item) {
                             return (
                                 <label key={index} className="radio">
                                     <input 
-                                        type="radio" 
+                                        type={val.type}
                                         name={val.slug}
-                                        value={x} 
-                                        onChange={handleChange} />
+                                        value={x}
+                                        onClick={handleChange}/>
                                     &nbsp;{x}
                                 </label>
                             )
                         })}
                     </>
+                )
+            case "select":
+                return (
+                    <div className="select is-small">
+                        <select onChange={handleChange}>
+                            <option value="">-----</option>
+                            {val.options.map((x, index) => <option key={index} value={x}>{x}</option>)}
+                        </select>
+                    </div>
                 )
             default:
                 return (
@@ -95,7 +112,8 @@ function EntryInput(input_item) {
 }
 
 const mapStateToProps = state => ({
-    answers: state.answers
+    answers: state.answers,
+    meta: state.meta
 })
 
 const mapDispatchToProps = { updateInput }
