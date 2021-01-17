@@ -98,7 +98,7 @@ function EntryInput(input_item) {
                         className="input is-small"
                         type="text"
                         onChange={handleChange}
-                        placeholder={val.slug}>
+                        placeholder={val.placeholder || val.slug}>
                     </input>
                 )
         }

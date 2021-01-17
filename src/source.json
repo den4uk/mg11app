@@ -18,20 +18,20 @@
             "id": 2,
             "question": "Crewed with",
             "snippet": ", crewed with {{crew}}",
-            "values": [{"type": "text", "slug": "crew"}]
+            "values": [{"type": "text", "slug": "crew", "placeholder": "List crew members..."}]
         },
         {
             "id": 3,
             "question": "Callsign",
             "snippet": ", using callsign {{callsign}}. ",
-            "values": [{"type": "text", "slug": "callsign"}]
+            "values": [{"type": "text", "slug": "callsign", "placeholder": "Callsign used..."}]
         },
         {
             "id": 4,
             "question": "Weather (traffic only)",
             "snippet": " It was a {{weather_adj}} day, the visibility was {{weather_vis}}. ",
             "values": [
-                {"type": "text", "slug": "weather_adj"}, 
+                {"type": "text", "slug": "weather_adj", "placeholder": "Weather (as adjective)..."}, 
                 {"type": "select", "slug": "weather_vis", "options": ["clear", "mildly limited", "moderately limited", "poor"]}
             ]
         },
@@ -41,7 +41,7 @@
             "snippet": " On the day of the duty I was driving {{vehicle_marking}} vehicle, registration {{vehicle_vrm}}. ",
             "values": [
                 {"type": "radio", "slug": "vehicle_marking", "options": ["a marked", "an unmarked"]},
-                {"type": "text", "slug": "vehicle_vrm"}
+                {"type": "text", "slug": "vehicle_vrm", "placeholder": "Vehicle Regsitration Mark..."}
             ]
         }
     ]
